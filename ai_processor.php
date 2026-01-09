@@ -1,10 +1,10 @@
 <?php
-// ai_processor.php
+
 
 function analyzeWithAI($description) {
     $url = "http://localhost:11434/api/generate";
     
-    // We strictly tell the AI what we want to prevent "hallucinations"
+    
     $prompt = $prompt = $prompt = "You are a highly senior Government Administrative Officer responsible for triaging public petitions.
 Analyze this petition: '$description'
 
@@ -29,7 +29,7 @@ PRIORITY RULES:
 Respond ONLY in valid JSON: {\"category\": \"\", \"priority\": \"\"}";
 
     $data = [
-        "model" => "llama3.2", // Make sure this matches the model you pulled
+        "model" => "llama3.2", 
         "prompt" => $prompt,
         "stream" => false,
         "format" => "json"
@@ -50,7 +50,7 @@ Respond ONLY in valid JSON: {\"category\": \"\", \"priority\": \"\"}";
     curl_close($ch);
 
     $result = json_decode($response, true);
-    // The actual AI text is inside the 'response' key of the Ollama JSON
+    
     return json_decode($result['response'], true);
 }
 ?>
